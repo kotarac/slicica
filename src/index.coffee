@@ -60,11 +60,15 @@ module.exports = (root, prefix, opts) ->
 				res.statusCode = 304
 				res.end()
 
-			f = fs.createReadStream(path)
+			f = fs.createReadStream(path).on 'error', ->
+				res.statusCode = 500
+				res.end()
 
 			return f.pipe(res) unless type in imageTypes
 
-			t = sharp().on('error', -> res.sendStatus 400)
+			t = sharp().on 'error', ->
+				res.statusCode = 500
+				res.end()
 			t.resize(w, h) if w or h
 			t.crop(sharp.gravity[g]) if g of sharp.gravity
 			t.progressive() if opts.progressive
