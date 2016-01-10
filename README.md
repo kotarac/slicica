@@ -1,9 +1,12 @@
 # slicica
 *diminutive for **image** in croatian*
 
-Image serving/resizing Connect middleware using Sharp/VIPS.
+Streaming image serving/resizing Connect middleware using Sharp/VIPS.
 
 Intended for usage behind a CDN like Cloudflare as it doesn't cache results.
+
+It's possible to use a custom [fs](https://nodejs.org/docs/latest/api/fs.html) implementation with at least [stat](https://nodejs.org/docs/latest/api/fs.html#fs_fs_stat_path_callback) and [createReadStream](https://nodejs.org/docs/latest/api/fs.html#fs_fs_createreadstream_path_options) implemented.
+Can be useful for serving images from S3 instead of the local file system with [S3FS](https://github.com/RiptideElements/s3fs).
 
 
 ## Install
@@ -23,7 +26,7 @@ brew install homebrew/science/vips --with-webp --with-graphicsmagick
 ## Usage
 
 ```js
-app.use(require('slicica')(root, prefix, options));
+app.use(require('slicica')(options));
 ```
 
 ```js
@@ -31,10 +34,11 @@ var app = express();
 var slicica = require('slicica');
 
 app.use(slicica(
-	'static/images', // folder containing images to serve from
-	'/images', // url prefix
 	// default options below
 	{
+		prefix: '/', // url prefix on which to serve the images
+		fs: require('fs'), // fs interface for getting the images
+		root: '', // root folder / prefix to prepend to the requested image (path where the images reside)
 		maxAge: 0, // takes seconds as integer | ms compatible string | false to disable
 		etag: true, // generate and send ETag header
 		lastModified: true, // send the Last-Modified header
@@ -46,7 +50,10 @@ app.use(slicica(
 			'image/png'
 			'image/svg+xml'
 			'image/webp'
-		] // content types to serve (text types like svg+xml are just piped through), other requests are ignored
+		], // content types to serve (text types like svg+xml are just piped through), other requests are ignored
+		cacheMemory: 0, // MBs of memory to use for sharp cache
+		cacheItems: 0 // items to keep in sharp cache
+		concurrency: 0 // number of threads sharp will use (0 = number of cores)
 	}
 ));
 ```

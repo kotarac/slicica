@@ -3,11 +3,8 @@ fresh = require 'fresh'
 fs = require 'fs'
 mime = require 'mime'
 ms = require 'ms'
-resolve = require('path').resolve
 sharp = require 'sharp'
 
-sharp.cache(0, 0)
-sharp.concurrency(1)
 
 imageTypes = [
 	'image/gif'
@@ -17,12 +14,11 @@ imageTypes = [
 ]
 
 
-module.exports = (root, prefix, opts) ->
-	throw new TypeError('root path required') unless root and typeof root is 'string'
-	throw new TypeError('prefix required') unless prefix and typeof prefix is 'string'
-
-	prefix = "/#{prefix}" unless prefix[0] is '/'
-	opts or= {}
+module.exports = (opts = {}) ->
+	opts.prefix ?= '/'
+	opts.prefix = "/#{opts.prefix}" unless opts.prefix[0] is '/'
+	opts.fs or= fs
+	opts.root or= ''
 	opts.maxAge ?= 0
 	opts.maxAge = ms(opts.maxAge) / 1000 if typeof opts.maxAge is 'string'
 	opts.compression ?= 9
@@ -36,19 +32,25 @@ module.exports = (root, prefix, opts) ->
 		'image/svg+xml'
 		'image/webp'
 	]
+	opts.cacheMemory ?= 0
+	opts.cacheItems ?= 0
+	opts.concurrency ?= 0
+
+	sharp.cache opts.cacheMemory, opts.cacheItems
+	sharp.concurrency opts.concurrency
 
 	(req, res, next) ->
-		return next() unless req.path[0 .. prefix.length - 1] is prefix
+		return next() unless req.path[0 .. opts.prefix.length - 1] is opts.prefix
 
 		{w, h, g} = req.query
 		w = parseInt(w, 10) if w
 		h = parseInt(h, 10) if h
-		path = resolve("#{root}#{req.path[prefix.length ..]}")
+		path = "#{opts.root}#{req.path[opts.prefix.length ..]}"
 		type = mime.lookup(path)
 
 		return next() unless type in opts.contentTypes
 
-		fs.stat path, (err, stats) ->
+		opts.fs.stat path, (err, stats) ->
 			return next() if err
 
 			res.setHeader('Content-Type', type)
@@ -60,7 +62,7 @@ module.exports = (root, prefix, opts) ->
 				res.statusCode = 304
 				res.end()
 
-			f = fs.createReadStream(path).on 'error', ->
+			f = opts.fs.createReadStream(path).on 'error', ->
 				res.statusCode = 500
 				res.end()
 
