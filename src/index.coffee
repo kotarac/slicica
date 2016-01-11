@@ -45,7 +45,7 @@ module.exports = (opts = {}) ->
 		{w, h, g} = req.query
 		w = parseInt(w, 10) if w
 		h = parseInt(h, 10) if h
-		path = "#{opts.root}#{req.path[opts.prefix.length ..]}"
+		path = unescape("#{opts.root}#{req.path[opts.prefix.length ..]}")
 		type = mime.lookup(path)
 
 		return next() unless type in opts.contentTypes
