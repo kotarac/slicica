@@ -40,6 +40,7 @@ module.exports = (opts = {}) ->
 	sharp.concurrency opts.concurrency
 
 	(req, res, next) ->
+		return next() unless req.method.toUpperCase() is 'GET'
 		return next() unless req.path[0 .. opts.prefix.length - 1] is opts.prefix
 
 		{w, h, g} = req.query
@@ -49,6 +50,10 @@ module.exports = (opts = {}) ->
 		type = mime.lookup(path)
 
 		return next() unless type in opts.contentTypes
+
+		req.route =
+			path: "#{opts.prefix}/:slicica"
+			methods: get: true
 
 		opts.fs.stat path, (err, stats) ->
 			return next() if err

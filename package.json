@@ -1,7 +1,7 @@
 {
   "name": "slicica",
   "version": "2.0.2",
-  "description": "Image serving/resizing Connect middleware using Sharp/VIPS.",
+  "description": "Image serving/resizing/optimizing Connect/Express middleware using Sharp/VIPS.",
   "homepage": "https://github.com/kotarac/slicica",
   "bugs": "https://github.com/kotarac/slicica/issues",
   "repository": {
@@ -11,7 +11,9 @@
   "keywords": [
     "image",
     "resize",
-    "vips"
+    "vips",
+    "express",
+    "connect"
   ],
   "author": {
     "name": "Stipe Kotarac",
@@ -36,6 +38,7 @@
   },
   "scripts": {
     "prepublish": "npm run build",
-    "build": "coffee -p -b src/index.coffee > index.js"
+    "build": "coffee -b -o . src/index.coffee",
+    "dev": "coffee -w -b -o . src/index.coffee"
   }
 }
