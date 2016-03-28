@@ -3,7 +3,7 @@
 
 Streaming image serving/resizing Connect middleware using Sharp/VIPS.
 
-Intended for usage behind a CDN like Cloudflare as it doesn't cache results.
+Intended for usage behind a proxy cache (e.g. nginx, varnish) or a CDN (e.g. CloudFlare) as it doesn't cache results on its own.
 
 It's possible to use a custom [fs](https://nodejs.org/docs/latest/api/fs.html) implementation with at least [stat](https://nodejs.org/docs/latest/api/fs.html#fs_fs_stat_path_callback) and [createReadStream](https://nodejs.org/docs/latest/api/fs.html#fs_fs_createreadstream_path_options) implemented.
 Can be useful for serving images from S3 instead of the local file system with [S3FS](https://github.com/RiptideElements/s3fs).
