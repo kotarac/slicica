@@ -51,8 +51,7 @@ app.use(slicica(
 			'image/svg+xml'
 			'image/webp'
 		], // content types to serve (text types like svg+xml are just piped through), other requests are ignored
-		cacheMemory: 0, // MBs of memory to use for sharp cache
-		cacheItems: 0 // items to keep in sharp cache
+		cache: false, // options passed to sharp.cache
 		concurrency: 0 // number of threads sharp will use (0 = number of cores)
 	}
 ));
