@@ -32,11 +32,10 @@ module.exports = (opts = {}) ->
 		'image/svg+xml'
 		'image/webp'
 	]
-	opts.cacheMemory ?= 0
-	opts.cacheItems ?= 0
+	opts.cache ?= false
 	opts.concurrency ?= 0
 
-	sharp.cache opts.cacheMemory, opts.cacheItems
+	sharp.cache opts.cache
 	sharp.concurrency opts.concurrency
 
 	(req, res, next) ->
