@@ -1,5 +1,5 @@
 # slicica
-*diminutive for **image** in croatian*
+_diminutive for **image** in croatian_
 
 Streaming image serving/resizing Connect middleware using Sharp/VIPS.
 
