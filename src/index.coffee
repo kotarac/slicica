@@ -14,6 +14,10 @@ imageTypes = [
 ]
 
 
+setHeaders = (res, headers) ->
+	res.setHeader k, v for own k, v of headers
+
+
 module.exports = (opts = {}) ->
 	opts.prefix ?= '/'
 	opts.prefix = "/#{opts.prefix}" unless opts.prefix[0] is '/'
@@ -39,7 +43,8 @@ module.exports = (opts = {}) ->
 	sharp.concurrency opts.concurrency
 
 	(req, res, next) ->
-		return next() unless req.method.toUpperCase() is 'GET'
+		method = req.method.toUpperCase()
+		return next() unless req.method.toUpperCase() in ['GET', 'HEAD']
 		return next() unless req.path[0 .. opts.prefix.length - 1] is opts.prefix
 
 		{w, h, g} = req.query
@@ -47,30 +52,42 @@ module.exports = (opts = {}) ->
 		h = parseInt(h, 10) if h
 		path = decodeURI("#{opts.root}#{req.path[opts.prefix.length ..]}")
 		type = mime.lookup(path)
-
 		return next() unless type in opts.contentTypes
 
 		req.route =
 			path: "#{opts.prefix}/:slicica"
-			methods: get: true
+			methods: "#{method.toLowerCase()}": true
 
 		opts.fs.stat path, (err, stats) ->
 			return next() if err
 
-			res.setHeader('Content-Type', type)
-			res.setHeader('Cache-Control', "public, max-age=#{opts.maxAge}") unless opts.maxAge is false
-			res.setHeader('Last-Modified', stats.mtime.toUTCString()) if opts.lastModified
-			res.setHeader('ETag', etag(stats)) if opts.etag
+			reqHeaders = req.headers
+			resHeaders = {}
+			resHeaders['content-type'] = type
+			resHeaders['cache-control'] = "public, max-age=#{opts.maxAge}" unless opts.maxAge is false
+			resHeaders['last-modified'] = stats.mtime.toUTCString() if opts.lastModified
+			resHeaders['etag'] = etag("#{etag(stats)}p#{path}w#{w}h#{h}g#{g}") if opts.etag
 
-			if fresh req, res
+			if fresh reqHeaders, resHeaders
+				setHeaders res, resHeaders
 				res.statusCode = 304
 				res.end()
+				return
+
+			if method is 'HEAD'
+				setHeaders res, resHeaders
+				res.statusCode = 200
+				res.end()
+				return
 
 			f = opts.fs.createReadStream(path).on 'error', ->
 				res.statusCode = 500
 				res.end()
 
-			return f.pipe(res) unless type in imageTypes
+			if type not in imageTypes
+				setHeaders res, resHeaders
+				f.pipe(res)
+				return
 
 			t = sharp().on 'error', ->
 				res.statusCode = 500
@@ -80,4 +97,6 @@ module.exports = (opts = {}) ->
 			t.progressive() if opts.progressive
 			t.compressionLevel(opts.compression)
 
-			return f.pipe(t).pipe(res)
+			setHeaders res, resHeaders
+			f.pipe(t).pipe(res)
+			return
