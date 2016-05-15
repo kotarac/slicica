@@ -42,8 +42,9 @@ app.use(slicica(
 		maxAge: 0, // takes seconds as integer | ms compatible string | false to disable
 		etag: true, // generate and send ETag header
 		lastModified: true, // send the Last-Modified header
-		compression: 9, // image compression level (0-9)
-		progressive: true, // progressive scan for JPG and PNG
+		progressive: false, // progressive scan for JPG and PNG
+		quality: 80, // output quality for jpeg, webp and tiff
+		compression: 6, // image compression level (0-9)
 		contentTypes: [
 			'image/gif'
 			'image/jpeg'

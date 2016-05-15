@@ -25,8 +25,9 @@ module.exports = (opts = {}) ->
 	opts.root or= ''
 	opts.maxAge ?= 0
 	opts.maxAge = ms(opts.maxAge) / 1000 if typeof opts.maxAge is 'string'
-	opts.compression ?= 9
-	opts.progressive ?= true
+	opts.progressive ?= false
+	opts.quality ?= 80
+	opts.compression ?= 6
 	opts.etag ?= true
 	opts.lastModified ?= true
 	opts.contentTypes ?= [
@@ -95,6 +96,7 @@ module.exports = (opts = {}) ->
 			t.resize(w, h) if w or h
 			t.crop(sharp.gravity[g]) if g of sharp.gravity
 			t.progressive() if opts.progressive
+			t.quality(opts.quality)
 			t.compressionLevel(opts.compression)
 
 			setHeaders res, resHeaders
