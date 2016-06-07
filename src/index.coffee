@@ -48,7 +48,7 @@ module.exports = (opts = {}) ->
 		return next() unless req.method.toUpperCase() in ['GET', 'HEAD']
 		return next() unless req.path[0 .. opts.prefix.length - 1] is opts.prefix
 
-		{w, h, g} = req.query
+		{w, h, g, max, min} = req.query
 		w = parseInt(w, 10) if w
 		h = parseInt(h, 10) if h
 		path = decodeURI("#{opts.root}#{req.path[opts.prefix.length ..]}")
@@ -67,7 +67,7 @@ module.exports = (opts = {}) ->
 			resHeaders['content-type'] = type
 			resHeaders['cache-control'] = "public, max-age=#{opts.maxAge}" unless opts.maxAge is false
 			resHeaders['last-modified'] = stats.mtime.toUTCString() if opts.lastModified
-			resHeaders['etag'] = etag("#{etag(stats)}p#{path}w#{w}h#{h}g#{g}") if opts.etag
+			resHeaders['etag'] = etag("#{etag(stats)}p#{path}w#{w}h#{h}g#{g}max#{max}min#{min}") if opts.etag
 
 			if fresh reqHeaders, resHeaders
 				setHeaders res, resHeaders
@@ -94,6 +94,8 @@ module.exports = (opts = {}) ->
 				res.statusCode = 500
 				res.end()
 			t.resize(w, h) if w or h
+			t.max() if max
+			t.min() if min
 			t.crop(sharp.gravity[g]) if g of sharp.gravity
 			t.progressive() if opts.progressive
 			t.quality(opts.quality)
