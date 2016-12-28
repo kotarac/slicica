@@ -7,10 +7,10 @@ sharp = require 'sharp'
 
 
 imageTypes = [
-	'image/gif'
 	'image/jpeg'
 	'image/png'
 	'image/webp'
+	'image/tiff'
 ]
 
 
@@ -31,11 +31,10 @@ module.exports = (opts = {}) ->
 	opts.etag ?= true
 	opts.lastModified ?= true
 	opts.contentTypes ?= [
-		'image/gif'
 		'image/jpeg'
 		'image/png'
-		'image/svg+xml'
 		'image/webp'
+		'image/tiff'
 	]
 	opts.cache ?= false
 	opts.concurrency ?= 0
@@ -97,9 +96,23 @@ module.exports = (opts = {}) ->
 			t.max() if max
 			t.min() if min
 			t.crop(sharp.gravity[g]) if g of sharp.gravity
-			t.progressive() if opts.progressive
-			t.quality(opts.quality)
-			t.compressionLevel(opts.compression)
+
+			t.jpeg
+				force: false
+				quality: opts.quality
+				progressive: opts.progressive
+				compressionLevel: opts.compression
+			t.png
+				force: false
+				quality: opts.quality
+				progressive: opts.progressive
+				compressionLevel: opts.compression
+			t.webp
+				force: false
+				quality: opts.quality
+			t.tiff
+				force: false
+				quality: opts.quality
 
 			setHeaders res, resHeaders
 			f.pipe(t).pipe(res)
