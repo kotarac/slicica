@@ -1,6 +1,6 @@
 {
   "name": "slicica",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "Image serving/resizing/optimizing Connect/Express middleware using Sharp/VIPS.",
   "homepage": "https://github.com/kotarac/slicica",
   "bugs": "https://github.com/kotarac/slicica/issues",
