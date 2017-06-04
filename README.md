@@ -1,4 +1,4 @@
-# slicica
+# slicica [![Build Status](https://travis-ci.org/kotarac/slicica.svg?branch=master)](https://travis-ci.org/kotarac/slicica) [![npm version](https://badge.fury.io/js/slicica.svg)](https://www.npmjs.com/package/slicica) [![Dependency Status](https://david-dm.org/kotarac/slicica/status.svg)](https://david-dm.org/kotarac/slicica)
 _diminutive for **image** in croatian_
 
 Streaming image serving/resizing Connect middleware using [sharp](https://github.com/lovell/sharp) / [libvips](https://github.com/jcupitt/libvips).
@@ -20,12 +20,12 @@ For more information read [sharp's documentation](http://sharp.dimens.io/en/stab
 ## Usage
 
 ```js
-app.use(require('slicica')(options));
+app.use(require('slicica')(options))
 ```
 
 ```js
-const app = express();
-const slicica = require('slicica');
+const app = express()
+const slicica = require('slicica')
 
 app.use(slicica(
   // default options below
@@ -48,7 +48,7 @@ app.use(slicica(
     cache: false, // options passed to sharp.cache
     concurrency: 0 // number of threads sharp will use (0 = number of cores)
   }
-));
+))
 ```
 
 

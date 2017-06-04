@@ -40,8 +40,8 @@
     "tape": "^4.6.3"
   },
   "engines": {
-    "node": ">=4",
-    "npm": ">=2"
+    "node": ">=6",
+    "npm": ">=3"
   },
   "scripts": {
     "lint:check": "standard",

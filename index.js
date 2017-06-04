@@ -18,7 +18,7 @@ function setHeaders (res, headers) {
   }
 }
 
-module.exports = function (opts = {}) {
+module.exports = function (opts) {
   opts = Object.assign({}, {
     prefix: '/',
     root: '',
