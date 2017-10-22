@@ -63,7 +63,7 @@ module.exports = function (opts) {
     const w = parseInt(req.query.w, 10) || null
     const h = parseInt(req.query.h, 10) || null
     const path = decodeURI(`${opts.root}${req.path.slice(opts.prefix.length)}`)
-    const type = mime.lookup(path)
+    const type = mime.getType(path)
     if (!opts.contentTypes.includes(type)) {
       next()
       return
