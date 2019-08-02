@@ -44,8 +44,7 @@
     "yarn": ">=1"
   },
   "scripts": {
-    "lint:check": "standard",
-    "lint:fix": "standard --fix",
-    "test": "tape test/test.js | tap-spec"
+    "lint": "standard",
+    "test": "tape test/test.js"
   }
 }

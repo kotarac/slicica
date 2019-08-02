@@ -1,9 +1,13 @@
 version: v1.0
 name: semaphore
+
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu1804
+  containers:
+    - name: main
+      image: semaphoreci/node:8
+
 blocks:
   - name: node
     task:
@@ -12,4 +16,5 @@ blocks:
           commands:
             - checkout
             - yarn install
+            - yarn run lint
             - yarn run test
