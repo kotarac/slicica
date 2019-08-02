@@ -1,4 +1,4 @@
-# slicica [![Build Status](https://semaphoreci.com/api/v1/kotarac/slicica/branches/master/shields_badge.svg)](https://semaphoreci.com/kotarac/slicica) [![npm version](https://badge.fury.io/js/slicica.svg)](https://www.npmjs.com/package/slicica) [![Dependency Status](https://david-dm.org/kotarac/slicica/status.svg)](https://david-dm.org/kotarac/slicica)
+# slicica [![npm version](https://badge.fury.io/js/slicica.svg)](https://www.npmjs.com/package/slicica) [![Dependency Status](https://david-dm.org/kotarac/slicica/status.svg)](https://david-dm.org/kotarac/slicica)
 _diminutive for **image** in croatian_
 
 Streaming image serving/resizing Connect middleware using [sharp](https://github.com/lovell/sharp) / [libvips](https://github.com/jcupitt/libvips).
