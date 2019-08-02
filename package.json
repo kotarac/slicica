@@ -26,22 +26,22 @@
   "dependencies": {
     "etag": "^1.8.1",
     "fresh": "^0.5.2",
-    "mime": "^2.3.1",
-    "ms": "^2.1.1",
-    "sharp": "^0.20.4"
+    "mime": "^2.4.4",
+    "ms": "^2.1.2",
+    "sharp": "^0.23.0"
   },
   "devDependencies": {
-    "express": "^4.16.3",
-    "image-size": "^0.6.3",
-    "standard": "^11.0.1",
+    "express": "^4.17.1",
+    "image-size": "^0.7.4",
+    "standard": "^13.1.0",
     "superagent-binary-parser": "^1.0.1",
-    "supertest": "^3.1.0",
+    "supertest": "^4.0.2",
     "tap-spec": "^5.0.0",
-    "tape": "^4.9.1"
+    "tape": "^4.11.0"
   },
   "engines": {
-    "node": ">=6",
-    "npm": ">=3"
+    "node": ">=8",
+    "yarn": ">=1"
   },
   "scripts": {
     "lint:check": "standard",

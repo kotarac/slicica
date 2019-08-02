@@ -64,3 +64,7 @@ test('width & height', function (t) {
 test('width & height & gravity', function (t) {
   get(app, '/image/wat.jpg?w=100&h=100&g=north', assert(t, 100, 100, 'jpg'))
 })
+
+test('width & height & max', function (t) {
+  get(app, '/image/wat.jpg?w=1000&h=1000&max=1', assert(t, 604, 404, 'jpg'))
+})

@@ -59,7 +59,7 @@ module.exports = function (opts) {
       return
     }
 
-    const {g, max, min} = req.query
+    const { g, max } = req.query
     const w = parseInt(req.query.w, 10) || null
     const h = parseInt(req.query.h, 10) || null
     const path = decodeURI(`${opts.root}${req.path.slice(opts.prefix.length)}`)
@@ -92,7 +92,7 @@ module.exports = function (opts) {
         resHeaders['last-modified'] = stats.mtime.toUTCString()
       }
       if (opts.etag) {
-        resHeaders['etag'] = etag(`${etag(stats)}p${path}w${w}h${h}g${g}max${max}min${min}`)
+        resHeaders['etag'] = etag(`${etag(stats)}p${path}w${w}h${h}g${g}max${max}`)
       }
 
       if (!imageTypes.includes(type)) {
@@ -113,17 +113,16 @@ module.exports = function (opts) {
       }
 
       const s = sharp(path)
-      if (w || h) {
-        s.resize(w, h)
-      }
-      if (max) {
-        s.max()
-      }
-      if (min) {
-        s.min()
-      }
-      if (sharp.gravity[g] != null) {
-        s.crop(sharp.gravity[g])
+      const gravity = sharp.gravity[g] != null ? sharp.gravity[g] : 'center'
+      if (w || h || max) {
+        const opts = {}
+        if (gravity) {
+          opts.position = gravity
+        }
+        if (max) {
+          opts.withoutEnlargement = true
+        }
+        s.resize(w, h, opts)
       }
       s.jpeg({
         force: false,
