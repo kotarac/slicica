@@ -8,7 +8,7 @@ const test = require('tape')
 const app = express()
 const opts = {
   prefix: 'image',
-  root: 'test'
+  root: 'test',
 }
 
 app.use(slicica(opts))
@@ -37,7 +37,7 @@ function assert (t, w, h, type) {
 
 test('invalid content type', function (t) {
   get(express().use(slicica(Object.assign({}, opts, {
-    contentTypes: ['image/png']
+    contentTypes: ['image/png'],
   }))), '/image/wat.jpg', function (err, res) {
     t.notok(err, 'no error')
     t.is(res.statusCode, 404, '404')

@@ -9,7 +9,7 @@ const imageTypes = [
   'image/jpeg',
   'image/png',
   'image/webp',
-  'image/tiff'
+  'image/tiff',
 ]
 
 function setHeaders (res, headers) {
@@ -34,8 +34,8 @@ module.exports = function (opts) {
       'image/jpeg',
       'image/png',
       'image/webp',
-      'image/tiff'
-    ]
+      'image/tiff',
+    ],
   }, opts)
   if (opts.prefix[0] !== '/') {
     opts.prefix = `/${opts.prefix}`
@@ -72,8 +72,8 @@ module.exports = function (opts) {
     req.route = {
       path: `${opts.prefix}/:slicica`,
       methods: {
-        [`${method.toLowerCase()}`]: true
-      }
+        [`${method.toLowerCase()}`]: true,
+      },
     }
 
     fs.stat(path, function (err, stats) {
@@ -128,21 +128,21 @@ module.exports = function (opts) {
         force: false,
         quality: opts.quality,
         progressive: opts.progressive,
-        compressionLevel: opts.compression
+        compressionLevel: opts.compression,
       })
       s.png({
         force: false,
         quality: opts.quality,
         progressive: opts.progressive,
-        compressionLevel: opts.compression
+        compressionLevel: opts.compression,
       })
       s.webp({
         force: false,
-        quality: opts.quality
+        quality: opts.quality,
       })
       s.tiff({
         force: false,
-        quality: opts.quality
+        quality: opts.quality,
       })
 
       setHeaders(res, resHeaders)
