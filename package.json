@@ -28,17 +28,17 @@
     "fresh": "^0.5.2",
     "mime": "^2.4.4",
     "ms": "^2.1.2",
-    "sharp": "^0.23.1"
+    "sharp": "^0.23.3"
   },
   "devDependencies": {
-    "eslint": "^6.4.0",
+    "eslint": "^6.7.2",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "express": "^4.17.1",
-    "image-size": "^0.8.2",
+    "image-size": "^0.8.3",
     "superagent-binary-parser": "^1.0.1",
     "supertest": "^4.0.2",
     "tap-spec": "^5.0.0",
