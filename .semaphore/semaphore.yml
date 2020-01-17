@@ -6,7 +6,7 @@ agent:
     type: e1-standard-2
   containers:
     - name: main
-      image: semaphoreci/node:8
+      image: semaphoreci/node:10
 
 blocks:
   - name: node

@@ -28,13 +28,13 @@
     "fresh": "^0.5.2",
     "mime": "^2.4.4",
     "ms": "^2.1.2",
-    "sharp": "^0.23.3"
+    "sharp": "^0.24.0"
   },
   "devDependencies": {
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "express": "^4.17.1",
@@ -42,10 +42,10 @@
     "superagent-binary-parser": "^1.0.1",
     "supertest": "^4.0.2",
     "tap-spec": "^5.0.0",
-    "tape": "^4.11.0"
+    "tape": "^4.13.0"
   },
   "engines": {
-    "node": ">=8",
+    "node": ">=10",
     "yarn": ">=1"
   },
   "scripts": {
