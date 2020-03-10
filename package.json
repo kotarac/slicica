@@ -28,7 +28,7 @@
     "fresh": "^0.5.2",
     "mime": "^2.4.4",
     "ms": "^2.1.2",
-    "sharp": "^0.24.1"
+    "sharp": "^0.25.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -42,7 +42,7 @@
     "superagent-binary-parser": "^1.0.1",
     "supertest": "^4.0.2",
     "tap-spec": "^5.0.0",
-    "tape": "^4.13.0"
+    "tape": "^4.13.2"
   },
   "engines": {
     "node": ">=10",
