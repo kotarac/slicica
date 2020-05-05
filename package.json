@@ -26,15 +26,15 @@
   "dependencies": {
     "etag": "^1.8.1",
     "fresh": "^0.5.2",
-    "mime": "^2.4.4",
+    "mime": "^2.4.5",
     "ms": "^2.1.2",
-    "sharp": "^0.25.1"
+    "sharp": "^0.25.2"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-node": "^11.0.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "express": "^4.17.1",
@@ -42,7 +42,7 @@
     "superagent-binary-parser": "^1.0.1",
     "supertest": "^4.0.2",
     "tap-spec": "^5.0.0",
-    "tape": "^4.13.2"
+    "tape": "^5.0.0"
   },
   "engines": {
     "node": ">=10",
