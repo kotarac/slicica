@@ -1,7 +1,7 @@
 {
   "name": "slicica",
   "version": "11.0.2",
-  "description": "Image serving/resizing/optimizing Connect/Express middleware using Sharp/VIPS.",
+  "description": "Image serving/resizing/optimizing Express/Connect middleware using sharp/libvips.",
   "homepage": "https://github.com/kotarac/slicica",
   "bugs": "https://github.com/kotarac/slicica/issues",
   "repository": {
@@ -23,6 +23,9 @@
   },
   "license": "MIT",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "dependencies": {
     "etag": "^1.8.1",
     "fresh": "^0.5.2",
@@ -41,7 +44,6 @@
     "image-size": "^0.9.1",
     "superagent-binary-parser": "^1.0.1",
     "supertest": "^5.0.0",
-    "tap-spec": "^5.0.0",
     "tape": "^5.0.1"
   },
   "engines": {

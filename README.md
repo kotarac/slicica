@@ -1,7 +1,7 @@
 # slicica [![npm version](https://badge.fury.io/js/slicica.svg)](https://www.npmjs.com/package/slicica) [![Build Status](https://kotarac.semaphoreci.com/badges/slicica/branches/master.svg?style=shields&key=2e36519f-37bd-42cf-8f4d-0db620a12e81)](https://kotarac.semaphoreci.com/projects/slicica) [![Dependency Status](https://david-dm.org/kotarac/slicica/status.svg)](https://david-dm.org/kotarac/slicica)
 _diminutive for **image** in croatian_
 
-Image serving/resizing/optimizing Connect middleware using [sharp](https://github.com/lovell/sharp) / [libvips](https://github.com/jcupitt/libvips).
+Image serving/resizing/optimizing Express/Connect middleware using [sharp](https://github.com/lovell/sharp)/[libvips](https://github.com/jcupitt/libvips).
 
 Intended for usage behind a proxy cache (e.g. nginx, varnish) or a CDN (e.g. CloudFlare) as it doesn't cache results on its own.
 
