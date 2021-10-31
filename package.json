@@ -31,7 +31,7 @@
     "fresh": "^0.5.2",
     "mime": "^2.5.2",
     "ms": "2",
-    "sharp": "^0.29.1"
+    "sharp": "^0.29.2"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
