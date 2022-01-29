@@ -29,21 +29,21 @@
   "dependencies": {
     "etag": "^1.8.1",
     "fresh": "^0.5.2",
-    "mime": "^2.5.2",
+    "mime": "^3.0.0",
     "ms": "2",
-    "sharp": "^0.29.2"
+    "sharp": "^0.29.3"
   },
   "devDependencies": {
-    "eslint": "^8.1.0",
+    "eslint": "^8.8.0",
     "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.1",
-    "express": "^4.17.1",
-    "image-size": "^1.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "express": "^4.17.2",
+    "image-size": "^1.0.1",
     "superagent-binary-parser": "^1.0.1",
-    "supertest": "^6.1.6",
-    "tape": "^5.3.1"
+    "supertest": "^6.2.2",
+    "tape": "^5.5.0"
   },
   "engines": {
     "node": ">=12.13.0",
