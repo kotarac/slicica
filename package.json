@@ -30,23 +30,23 @@
     "etag": "^1.8.1",
     "fresh": "^0.5.2",
     "mime": "^3.0.0",
-    "ms": "2",
-    "sharp": "^0.30.3"
+    "ms": "^2.1.3",
+    "sharp": "^0.31.1"
   },
   "devDependencies": {
-    "eslint": "^8.11.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "express": "^4.17.3",
-    "image-size": "^1.0.1",
+    "eslint": "^8.26.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.4.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "express": "^4.18.2",
+    "image-size": "^1.0.2",
     "superagent-binary-parser": "^1.0.1",
-    "supertest": "^6.2.2",
-    "tape": "^5.5.2"
+    "supertest": "^6.3.1",
+    "tape": "^5.6.1"
   },
   "engines": {
-    "node": ">=12.13.0",
+    "node": ">=14.15.0",
     "yarn": "1",
     "npm": "please-use-yarn"
   },
