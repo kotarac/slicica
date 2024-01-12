@@ -5,21 +5,16 @@ const mime = require('mime')
 const ms = require('ms')
 const sharp = require('sharp')
 
-const imageTypes = [
-  'image/jpeg',
-  'image/png',
-  'image/webp',
-  'image/tiff',
-]
+const imageTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/tiff']
 
-function setHeaders (res, headers) {
+function setHeaders(res, headers) {
   for (const k of Object.keys(headers)) {
     res.setHeader(k, headers[k])
   }
 }
 
-module.exports = function (opts) {
-  opts = Object.assign({}, {
+module.exports = function slicica(opts) {
+  opts = {
     prefix: '/',
     root: '',
     maxAge: 0,
@@ -30,13 +25,9 @@ module.exports = function (opts) {
     lastModified: true,
     cache: false,
     concurrency: 0,
-    contentTypes: [
-      'image/jpeg',
-      'image/png',
-      'image/webp',
-      'image/tiff',
-    ],
-  }, opts)
+    contentTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/tiff'],
+    ...opts,
+  }
   if (opts.prefix[0] !== '/') {
     opts.prefix = `/${opts.prefix}`
   }
