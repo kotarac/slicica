@@ -1,7 +1,7 @@
 const etag = require('etag')
 const fs = require('fs')
 const fresh = require('fresh')
-const mime = require('mime')
+const mime = require('mime-types')
 const ms = require('ms')
 const sharp = require('sharp')
 
@@ -54,7 +54,7 @@ module.exports = function slicica(opts) {
     const w = parseInt(req.query.w, 10) || null
     const h = parseInt(req.query.h, 10) || null
     const path = decodeURI(`${opts.root}${req.path.slice(opts.prefix.length)}`)
-    const type = mime.getType(path)
+    const type = mime.lookup(path)
     if (!opts.contentTypes.includes(type)) {
       next()
       return
