@@ -1,9 +1,9 @@
+const assert = require('node:assert/strict')
 const binaryParser = require('superagent-binary-parser')
 const express = require('express')
-const imageSize = require('image-size')
 const r = require('supertest')
 const test = require('node:test')
-const assert = require('node:assert/strict')
+const { imageSize } = require('image-size')
 
 const slicica = require('../')
 
