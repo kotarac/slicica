@@ -6,7 +6,7 @@
   "bugs": "https://github.com/kotarac/slicica/issues",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kotarac/slicica.git"
+    "url": "git+https://github.com/kotarac/slicica.git"
   },
   "keywords": [
     "image",
