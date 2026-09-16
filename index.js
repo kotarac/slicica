@@ -59,6 +59,11 @@ module.exports = function slicica(opts) {
       next()
       return
     }
+    if (w < 0 || w > 100000000 || h < 0 || h > 100000000) {
+      res.statusCode = 400
+      res.end()
+      return
+    }
 
     req.route = {
       path: `${opts.prefix}/:slicica`,

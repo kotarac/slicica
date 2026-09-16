@@ -52,6 +52,20 @@ test('jpg plain', async () => {
   check(await get(app, '/image/wat.jpg'), 604, 404, 'jpg')
 })
 
+test('invalid dimensions', async () => {
+  for (const dimension of ['w', 'h']) {
+    for (const value of ['100000001', '-1']) {
+      const res = await get(app, `/image/wat.jpg?${dimension}=${value}&max=1`)
+      assert.equal(res.statusCode, 400, '400')
+    }
+  }
+  check(await get(app, '/image/wat.jpg?w=100'), 100, null, 'jpg')
+})
+
+test('maximum dimensions', async () => {
+  check(await get(app, '/image/wat.jpg?w=100000000&h=100000000&max=1'), 604, 404, 'jpg')
+})
+
 test('jpg height', async () => {
   check(await get(app, '/image/wat.jpg?h=100'), null, 100, 'jpg')
 })
